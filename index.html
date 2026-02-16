@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>MOB Industrial | Diseño & Fabricación de Autor</title>
+    <title>MOB Industrial | Ingeniería & Mobiliario de Autor</title>
     
-    <link rel="preload" href="logo-mob.jpg" as="image">
+    <link rel="preload" href="mueble-industrial.jpg" as="image">
     
-    <meta name="description" content="Estudio de diseño industrial por Benitez y Oviedo. Mobiliario de alta gama en hierro y madera.">
+    <meta name="description" content="Mobiliario industrial premium por Benitez y Oviedo. Diseño estructural de alta resistencia.">
     <meta property="og:title" content="MOB Industrial | Mobiliario de Autor">
     <meta property="og:image" content="logo-mob.jpg">
     
@@ -32,17 +32,14 @@
         </div>
     </nav>
 
-    <header id="inicio" class="hero">
-        <div class="parallax-wrapper">
-            <div class="parallax-bg" id="hero-bg"></div>
-            <div class="overlay"></div>
-        </div>
+    <header id="inicio" class="hero parallax-container">
+        <div class="parallax-bg" style="background-image: url('mueble-industrial.jpg');"></div>
         <div class="hero-content">
             <span class="reveal">Benitez & Oviedo Studio</span>
             <h1 class="reveal">Ingeniería en <span>Mobiliario</span></h1>
-            <p class="reveal">Diseños estructurales de alta resistencia. Fabricación artesanal con estándares industriales.</p>
+            <p class="reveal">Estructuras que desafían el tiempo. Diseñadas para durar, fabricadas para impresionar.</p>
             <div class="hero-btns reveal">
-                <a href="#proyectos" class="main-btn">Ver Proyectos</a>
+                <a href="#proyectos" class="main-btn">Explorar Portafolio</a>
             </div>
         </div>
     </header>
@@ -62,8 +59,8 @@
                 </div>
                 <div class="product-desc">
                     <h3>Estantería Pro-Steel</h3>
-                    <p>Estructura de perfil pesado y madera maciza seleccionada.</p>
-                    <a href="https://wa.me/5491136139401?text=Hola!%20Me%20interesa%20la%20Estanteria%20Pro-Steel" class="btn-sm">Consultar</a>
+                    <p>Acero estructural y maderas macizas recuperadas.</p>
+                    <a href="https://wa.me/5491136139401" class="btn-sm">Consultar</a>
                 </div>
             </div>
 
@@ -80,10 +77,13 @@
         </div>
     </section>
 
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="close-btn">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
-    </div>
+    <section class="mid-parallax parallax-container">
+        <div class="parallax-bg" style="background-image: url('taller.jpg'); filter: brightness(0.3);"></div>
+        <div class="mid-content reveal">
+            <h2>"La calidad no es un acto, es un hábito."</h2>
+            <p>Cada soldadura y cada veta cuenta una historia de precisión.</p>
+        </div>
+    </section>
 
     <section id="proceso" class="process-section reveal">
         <div class="section-header">
@@ -93,18 +93,18 @@
         <div class="process-steps">
             <div class="step">
                 <div class="step-num">01</div>
-                <h3>Consultoría Técnica</h3>
-                <p>Analizamos el espacio y la carga estructural para definir el diseño óptimo.</p>
+                <h3>Consultoría</h3>
+                <p>Análisis de espacio y carga estructural.</p>
             </div>
             <div class="step">
                 <div class="step-num">02</div>
-                <h3>Forjado y Corte</h3>
-                <p>Utilizamos acero estructural y cortes de precisión.</p>
+                <h3>Forjado</h3>
+                <p>Cortes de precisión y ensamblaje milimétrico.</p>
             </div>
             <div class="step">
                 <div class="step-num">03</div>
-                <h3>Curación de Madera</h3>
-                <p>Tratamos maderas macizas con aceites naturales.</p>
+                <h3>Acabado</h3>
+                <p>Curación artesanal con aceites naturales.</p>
             </div>
         </div>
     </section>
@@ -113,31 +113,27 @@
         <div class="contact-card">
             <div class="contact-info">
                 <h2>¿Tenés un proyecto?</h2>
-                <p>Recibí una cotización técnica directamente en tu WhatsApp.</p>
+                <p>Recibí una cotización técnica personalizada.</p>
             </div>
             <form id="quote-form" class="smart-form">
-                <div class="form-group">
-                    <label>Tipo de Mueble</label>
-                    <select id="item-type">
-                        <option value="Estanteria">Estantería a medida</option>
-                        <option value="Mesa">Mesa de comedor</option>
-                        <option value="Iluminacion">Iluminación</option>
-                    </select>
-                </div>
+                <select id="item-type">
+                    <option value="Estanteria">Estantería a medida</option>
+                    <option value="Mesa">Mesa de comedor</option>
+                    <option value="Otro">Otro proyecto</option>
+                </select>
                 <div class="form-row">
-                    <div class="form-group">
-                        <label>Ancho (cm)</label>
-                        <input type="number" id="width" placeholder="120">
-                    </div>
-                    <div class="form-group">
-                        <label>Alto (cm)</label>
-                        <input type="number" id="height" placeholder="200">
-                    </div>
+                    <input type="number" id="width" placeholder="Ancho (cm)">
+                    <input type="number" id="height" placeholder="Alto (cm)">
                 </div>
                 <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Solicitar Cotización</button>
             </form>
         </div>
     </section>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-btn">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
 
     <footer class="main-footer">
         <p>MOB INDUSTRIAL &copy; 2026 | Benitez & Oviedo Studio</p>
