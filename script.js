@@ -1,55 +1,59 @@
-// 1. Quitar Loader al cargar
+// 1. Loader de alta performance
 window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     loader.style.opacity = '0';
-    setTimeout(() => {
-        loader.style.display = 'none';
-    }, 800);
+    setTimeout(() => loader.style.display = 'none', 800);
 });
 
-// 2. Animación de Scroll (Reveal)
-const observerOptions = {
-    threshold: 0.15
+// 2. Intersection Observer para animaciones suaves
+const revealElements = document.querySelectorAll('.reveal');
+const revealOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
 };
 
-const observer = new IntersectionObserver((entries) => {
+const revealOnScroll = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
     });
-}, observerOptions);
+}, revealOptions);
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+revealElements.forEach(el => revealOnScroll.observe(el));
 
-// 3. Navbar dinámico (Cambio de estilo al scrollear)
+// 3. Navbar dinámico con efecto de scroll
+let lastScroll = 0;
 window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
-    if (window.scrollY > 100) {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > 100) {
         nav.style.padding = "15px 5%";
-        nav.style.background = "rgba(10, 10, 11, 0.95)";
+        nav.style.background = "rgba(10, 10, 11, 0.98)";
+        nav.style.boxShadow = "0 10px 30px rgba(0,0,0,0.5)";
     } else {
         nav.style.padding = "25px 5%";
-        nav.style.background = "rgba(10, 10, 11, 0.7)";
+        nav.style.background = "rgba(10, 10, 11, 0.75)";
+        nav.style.boxShadow = "none";
     }
+    lastScroll = currentScroll;
 });
 
-// 4. Lógica del Presupuestador de WhatsApp
+// 4. Lógica de Envío de WhatsApp
 function sendToWhatsApp() {
-    // Obtenemos los valores del formulario
     const type = document.getElementById('item-type').value;
     const width = document.getElementById('width').value;
     const height = document.getElementById('height').value;
     
-    // Validamos que se hayan ingresado datos
     if(!width || !height) {
-        alert("Por favor, ingresá las medidas para una cotización precisa.");
+        // Feedback háptico visual
+        document.querySelectorAll('input').forEach(i => i.style.borderColor = "red");
+        setTimeout(() => document.querySelectorAll('input').forEach(i => i.style.borderColor = "#333"), 2000);
         return;
     }
 
-    // Construimos el mensaje con formato profesional
-    const message = `Hola MOB Industrial! 👋%0AQuisiera cotizar un proyecto personalizado:%0A%0A- *Tipo:* ${type}%0A- *Medidas:* ${width} x ${height} cm%0A%0AVengo desde la sección de presupuestos de la web oficial.`;
+    const message = `*SOLICITUD DE COTIZACIÓN - MOB INDUSTRIAL*%0A%0A*Producto:* ${type}%0A*Dimensiones:* ${width}x${height} cm%0A%0A_Enviado desde el portal oficial._`;
     
-    // Abrimos WhatsApp con el mensaje pre-cargado
     window.open(`https://wa.me/5491136139401?text=${message}`, '_blank');
 }
