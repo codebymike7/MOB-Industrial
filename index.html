@@ -11,21 +11,6 @@
     <meta property="og:title" content="MOB Industrial | Mobiliario de Autor">
     <meta property="og:image" content="logo-mob.jpg">
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FurnitureStore",
-      "name": "MOB Industrial",
-      "image": "logo-mob.jpg",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Buenos Aires",
-        "addressCountry": "AR"
-      },
-      "url": "https://tu-usuario.github.io/tu-repo/"
-    }
-    </script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -48,10 +33,14 @@
     </nav>
 
     <header id="inicio" class="hero">
+        <div class="parallax-wrapper">
+            <div class="parallax-bg" id="hero-bg"></div>
+            <div class="overlay"></div>
+        </div>
         <div class="hero-content">
             <span class="reveal">Benitez & Oviedo Studio</span>
             <h1 class="reveal">Ingeniería en <span>Mobiliario</span></h1>
-            <p class="reveal">Diseños estructurales de alta resistencia para espacios contemporáneos. Fabricación artesanal con estándares industriales.</p>
+            <p class="reveal">Diseños estructurales de alta resistencia. Fabricación artesanal con estándares industriales.</p>
             <div class="hero-btns reveal">
                 <a href="#proyectos" class="main-btn">Ver Proyectos</a>
             </div>
@@ -110,12 +99,12 @@
             <div class="step">
                 <div class="step-num">02</div>
                 <h3>Forjado y Corte</h3>
-                <p>Utilizamos acero estructural y cortes de precisión para un ensamblaje milimétrico.</p>
+                <p>Utilizamos acero estructural y cortes de precisión.</p>
             </div>
             <div class="step">
                 <div class="step-num">03</div>
                 <h3>Curación de Madera</h3>
-                <p>Tratamos maderas macizas con aceites naturales para máxima durabilidad.</p>
+                <p>Tratamos maderas macizas con aceites naturales.</p>
             </div>
         </div>
     </section>
@@ -123,27 +112,26 @@
     <section id="contacto" class="contact-section reveal">
         <div class="contact-card">
             <div class="contact-info">
-                <h2>¿Tenés un proyecto en mente?</h2>
-                <p>Completá los datos y recibí una cotización técnica personalizada directamente en tu WhatsApp.</p>
+                <h2>¿Tenés un proyecto?</h2>
+                <p>Recibí una cotización técnica directamente en tu WhatsApp.</p>
             </div>
             <form id="quote-form" class="smart-form">
                 <div class="form-group">
                     <label>Tipo de Mueble</label>
                     <select id="item-type">
                         <option value="Estanteria">Estantería a medida</option>
-                        <option value="Mesa">Mesa de comedor / Escritorio</option>
-                        <option value="Iluminacion">Proyecto de Iluminación</option>
-                        <option value="Otro">Otro proyecto especial</option>
+                        <option value="Mesa">Mesa de comedor</option>
+                        <option value="Iluminacion">Iluminación</option>
                     </select>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label>Ancho (cm)</label>
-                        <input type="number" id="width" placeholder="Ej: 120">
+                        <input type="number" id="width" placeholder="120">
                     </div>
                     <div class="form-group">
                         <label>Alto (cm)</label>
-                        <input type="number" id="height" placeholder="Ej: 200">
+                        <input type="number" id="height" placeholder="200">
                     </div>
                 </div>
                 <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Solicitar Cotización</button>
@@ -155,7 +143,7 @@
         <p>MOB INDUSTRIAL &copy; 2026 | Benitez & Oviedo Studio</p>
     </footer>
 
-    <a href="https://wa.me/5491136139401" class="whatsapp-float" target="_blank" aria-label="Contacto por WhatsApp">
+    <a href="https://wa.me/5491136139401" class="whatsapp-float" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
