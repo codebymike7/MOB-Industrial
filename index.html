@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>MOB Industrial | Diseño & Fabricación de Mobiliario</title>
+    <title>MOB Industrial | Diseño & Fabricación de Autor</title>
     
     <meta name="description" content="Estudio de diseño industrial por Benitez y Oviedo. Mobiliario de alta gama en hierro y madera.">
     <meta property="og:title" content="MOB Industrial | Mobiliario de Autor">
@@ -14,29 +14,71 @@
 </head>
 <body>
 
-    <nav class="navbar">
+    <div id="loader">MOB</div>
+
+    <nav class="navbar" id="navbar">
         <div class="container">
             <div class="logo-area">
-                <img src="logo-mob.jpg" alt="Logo MOB" class="logo-img">
+                <img src="logo-mob.jpg" alt="MOB Logo" class="logo-img">
                 <span>MOB INDUSTRIAL</span>
             </div>
             <ul class="nav-links">
-                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#proyectos">Colección</a></li>
                 <li><a href="#contacto" class="btn-contacto">Cotizar</a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="hero">
+    <header id="inicio" class="hero">
         <div class="hero-content">
             <span class="reveal">Benitez & Oviedo Studio</span>
-            <h1 class="reveal">Mobiliario con <span>Carácter Industrial</span></h1>
-            <p class="reveal">Diseño estructural de alta resistencia para espacios contemporáneos.</p>
+            <h1 class="reveal">Ingeniería en <span>Mobiliario</span></h1>
+            <p class="reveal">Diseños estructurales de alta resistencia para espacios contemporáneos. Fabricación artesanal con estándares industriales.</p>
             <div class="hero-btns reveal">
-                <a href="#proyectos" class="main-btn">Explorar Colección</a>
+                <a href="#proyectos" class="main-btn">Ver Proyectos</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="proyectos" class="products">
+        <div class="section-title reveal">
+            <span>Catálogo Exclusivo</span>
+            <h2>Diseño & Robustez</h2>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="mueble-industrial.jpg" alt="Estantería MOB">
+                    <div class="badge-price">A medida</div>
+                </div>
+                <div class="product-desc">
+                    <h3>Estantería Pro-Steel</h3>
+                    <p>Estructura de perfil pesado y madera maciza seleccionada.</p>
+                    <a href="https://wa.me/5491136139401?text=Hola!%20Me%20interesa%20la%20Estanteria%20Pro-Steel" class="btn-sm">Consultar</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <div class="placeholder-img">Próximamente: Iluminación</div>
+                </div>
+                <div class="product-desc">
+                    <h3>Lámpara Lux Industrial</h3>
+                    <p>Diseño minimalista en hierro negro mate.</p>
+                    <a href="#" class="btn-sm disabled">Muy pronto</a>
+                </div>
             </div>
         </div>
     </section>
+
+    <footer class="main-footer">
+        <p>MOB INDUSTRIAL &copy; 2026 | Benitez & Oviedo</p>
+    </footer>
+
+    <a href="https://wa.me/5491136139401" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
 
     <script src="script.js"></script>
 </body>
