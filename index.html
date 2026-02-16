@@ -5,9 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>MOB Industrial | Diseño & Fabricación de Autor</title>
     
+    <link rel="preload" href="logo-mob.jpg" as="image">
+    
     <meta name="description" content="Estudio de diseño industrial por Benitez y Oviedo. Mobiliario de alta gama en hierro y madera.">
     <meta property="og:title" content="MOB Industrial | Mobiliario de Autor">
     <meta property="og:image" content="logo-mob.jpg">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FurnitureStore",
+      "name": "MOB Industrial",
+      "image": "logo-mob.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Buenos Aires",
+        "addressCountry": "AR"
+      },
+      "url": "https://tu-usuario.github.io/tu-repo/"
+    }
+    </script>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -50,7 +67,7 @@
         <div class="products-grid">
             <div class="product-card reveal">
                 <div class="product-img">
-                    <img src="mueble-industrial.jpg" alt="Estantería MOB">
+                    <img src="mueble-industrial.jpg" alt="Estantería MOB" loading="lazy">
                     <div class="badge-price">A medida</div>
                 </div>
                 <div class="product-desc">
@@ -129,10 +146,10 @@
     </section>
 
     <footer class="main-footer">
-        <p>MOB INDUSTRIAL &copy; 2026 | Benitez & Oviedo</p>
+        <p>MOB INDUSTRIAL &copy; 2026 | Benitez & Oviedo Studio</p>
     </footer>
 
-    <a href="https://wa.me/5491136139401" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/5491136139401" class="whatsapp-float" target="_blank" aria-label="Contacto por WhatsApp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
