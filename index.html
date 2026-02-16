@@ -24,6 +24,7 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#proyectos">Colección</a></li>
+                <li><a href="#proceso">Proceso</a></li>
                 <li><a href="#contacto" class="btn-contacto">Cotizar</a></li>
             </ul>
         </div>
@@ -69,6 +70,61 @@
                     <a href="#" class="btn-sm disabled">Muy pronto</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="proceso" class="process-section reveal">
+        <div class="section-header">
+            <span>Metodología MOB</span>
+            <h2>Del Plano a la Realidad</h2>
+        </div>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-num">01</div>
+                <h3>Consultoría Técnica</h3>
+                <p>Analizamos el espacio y la carga estructural para definir el diseño óptimo.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <h3>Forjado y Corte</h3>
+                <p>Utilizamos acero estructural y cortes de precisión para un ensamblaje milimétrico.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <h3>Curación de Madera</h3>
+                <p>Tratamos maderas macizas con aceites naturales para máxima durabilidad.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact-section reveal">
+        <div class="contact-card">
+            <div class="contact-info">
+                <h2>¿Tenés un proyecto en mente?</h2>
+                <p>Completá los datos y recibí una cotización técnica personalizada directamente en tu WhatsApp.</p>
+            </div>
+            <form id="quote-form" class="smart-form">
+                <div class="form-group">
+                    <label>Tipo de Mueble</label>
+                    <select id="item-type">
+                        <option value="Estanteria">Estantería a medida</option>
+                        <option value="Mesa">Mesa de comedor / Escritorio</option>
+                        <option value="Iluminacion">Proyecto de Iluminación</option>
+                        <option value="Otro">Otro proyecto especial</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Ancho (cm)</label>
+                        <input type="number" id="width" placeholder="Ej: 120">
+                    </div>
+                    <div class="form-group">
+                        <label>Alto (cm)</label>
+                        <input type="number" id="height" placeholder="Ej: 200">
+                    </div>
+                </div>
+                <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Solicitar Cotización</button>
+            </form>
         </div>
     </section>
 
