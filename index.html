@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>MOB Industrial | Ingeniería & Mobiliario de Autor</title>
     
-    <link rel="preload" href="mueble-industrial.jpg" as="image">
-    
-    <meta name="description" content="Mobiliario industrial premium por Benitez y Oviedo. Diseño estructural de alta resistencia.">
-    <meta property="og:title" content="MOB Industrial | Mobiliario de Autor">
-    <meta property="og:image" content="logo-mob.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0a0a0b">
+
+    <link rel="canonical" href="https://tu-usuario.github.io/MOB-Industrial/">
+    <meta name="description" content="Mobiliario premium por Benitez y Oviedo. Estructuras industriales de alta resistencia.">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -37,23 +41,21 @@
             <source src="video-industrial.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
-        
         <div class="hero-content">
             <span class="reveal">Benitez & Oviedo Studio</span>
             <h1 class="reveal">Ingeniería en <span>Mobiliario</span></h1>
-            <p class="reveal">Estructuras que desafían el tiempo. Diseñadas para durar, fabricadas para impresionar.</p>
+            <p class="reveal">Diseños estructurales de alta resistencia. Fabricación artesanal con estándares industriales.</p>
             <div class="hero-btns reveal">
-                <a href="#proyectos" class="main-btn">Explorar Portafolio</a>
+                <a href="#proyectos" class="main-btn">Ver Colección</a>
             </div>
         </div>
     </header>
 
     <section id="proyectos" class="products">
         <div class="section-title reveal">
-            <span>Catálogo Exclusivo</span>
+            <span>Portfolio Exclusivo</span>
             <h2>Diseño & Robustez</h2>
         </div>
-
         <div class="products-grid">
             <div class="product-card reveal">
                 <div class="product-img" onclick="openLightbox('mueble-industrial.jpg')">
@@ -63,53 +65,18 @@
                 </div>
                 <div class="product-desc">
                     <h3>Estantería Pro-Steel</h3>
-                    <p>Acero estructural y maderas macizas recuperadas.</p>
-                    <a href="https://wa.me/5491136139401" class="btn-sm">Consultar</a>
+                    <p>Hierro estructural y madera maciza tratada.</p>
+                    <button class="btn-sm" onclick="openQuote('Estantería Pro-Steel')">Consultar</button>
                 </div>
             </div>
-
-            <div class="product-card reveal">
-                <div class="product-img">
-                    <div class="placeholder-img">Próximamente: Iluminación</div>
-                </div>
-                <div class="product-desc">
-                    <h3>Lámpara Lux Industrial</h3>
-                    <p>Diseño minimalista en hierro negro mate.</p>
-                    <a href="#" class="btn-sm disabled">Muy pronto</a>
-                </div>
             </div>
-        </div>
     </section>
 
     <section class="mid-parallax parallax-container">
         <div class="parallax-bg" style="background-image: url('taller.jpg');"></div>
         <div class="mid-content reveal">
             <h2>"La calidad no es un acto, es un hábito."</h2>
-            <p>Cada soldadura y cada veta cuenta una historia de precisión.</p>
-        </div>
-    </section>
-
-    <section id="proceso" class="process-section reveal">
-        <div class="section-header">
-            <span>Metodología MOB</span>
-            <h2>Del Plano a la Realidad</h2>
-        </div>
-        <div class="process-steps">
-            <div class="step">
-                <div class="step-num">01</div>
-                <h3>Consultoría</h3>
-                <p>Análisis de espacio y carga estructural.</p>
-            </div>
-            <div class="step">
-                <div class="step-num">02</div>
-                <h3>Forjado</h3>
-                <p>Cortes de precisión y ensamblaje milimétrico.</p>
-            </div>
-            <div class="step">
-                <div class="step-num">03</div>
-                <h3>Acabado</h3>
-                <p>Curación artesanal con aceites naturales.</p>
-            </div>
+            <p>Cada soldadura cuenta una historia de precisión.</p>
         </div>
     </section>
 
@@ -117,14 +84,17 @@
         <div class="contact-card">
             <div class="contact-info">
                 <h2>¿Tenés un proyecto?</h2>
-                <p>Recibí una cotización técnica personalizada.</p>
+                <p>Calculá tu presupuesto base y contactanos por WhatsApp.</p>
             </div>
             <form id="quote-form" class="smart-form">
-                <select id="item-type">
-                    <option value="Estanteria">Estantería a medida</option>
-                    <option value="Mesa">Mesa de comedor</option>
-                    <option value="Otro">Otro proyecto</option>
-                </select>
+                <div class="form-group">
+                    <label>Tipo de Mueble</label>
+                    <select id="item-type">
+                        <option value="Estantería" data-price="45000">Estantería Industrial</option>
+                        <option value="Mesa" data-price="60000">Mesa de Comedor</option>
+                        <option value="Escritorio" data-price="55000">Escritorio de Autor</option>
+                    </select>
+                </div>
                 <div class="form-row">
                     <input type="number" id="width" placeholder="Ancho (cm)">
                     <input type="number" id="height" placeholder="Alto (cm)">
@@ -142,10 +112,6 @@
     <footer class="main-footer">
         <p>MOB INDUSTRIAL &copy; 2026 | Benitez & Oviedo Studio</p>
     </footer>
-
-    <a href="https://wa.me/5491136139401" class="whatsapp-float" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
 
     <script src="script.js"></script>
 </body>
