@@ -19,7 +19,7 @@ body { background: var(--black-deep); color: var(--white); font-family: 'Inter',
     z-index: 9999; font-weight: 900; letter-spacing: 8px; transition: 0.8s;
 }
 
-/* Navbar Premium con Glassmorphism */
+/* Navbar Premium */
 .navbar {
     position: fixed; top: 0; width: 100%; padding: 25px 5%; z-index: 1000;
     background: rgba(10, 10, 11, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -27,52 +27,59 @@ body { background: var(--black-deep); color: var(--white); font-family: 'Inter',
 }
 .container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: auto; }
 .logo-area { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: 1px; }
-.logo-img { height: 35px; border-radius: 4px; filter: grayscale(100%) contrast(1.2); }
+.logo-img { height: 35px; border-radius: 4px; }
 .nav-links { list-style: none; display: flex; align-items: center; gap: 30px; }
 .nav-links a { text-decoration: none; color: white; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
-.nav-links a:hover { color: var(--gold); }
 .btn-contacto { background: var(--white); color: black !important; padding: 10px 22px; border-radius: 50px; }
-.btn-contacto:active { transform: scale(0.95); }
 
-/* Hero con Gradiente dinámico */
+/* Hero */
 .hero { height: 100vh; display: flex; align-items: center; padding: 0 10%; background: radial-gradient(circle at 70% 30%, #1e1e20 0%, #0a0a0b 100%); }
 .hero-content { max-width: 850px; }
 h1 { font-size: clamp(2.8rem, 9vw, 5.5rem); font-weight: 900; line-height: 0.95; margin: 20px 0; letter-spacing: -2px; }
 h1 span { color: var(--gold); }
 p { color: var(--text-gray); font-size: 1.15rem; max-width: 550px; margin-bottom: 40px; font-weight: 300; }
-
 .main-btn { background: var(--gold); color: black; padding: 22px 45px; text-decoration: none; font-weight: 800; text-transform: uppercase; display: inline-block; transition: var(--transition); border: 2px solid var(--gold); }
-.main-btn:hover { background: transparent; color: var(--gold); }
 
-/* Products Grid */
+/* Products Grid & Zoom */
 .products { padding: 120px 5%; background: var(--black-soft); }
 .section-title { text-align: center; margin-bottom: 80px; }
-.section-title span { color: var(--gold); text-transform: uppercase; letter-spacing: 5px; font-weight: 700; font-size: 0.75rem; }
 .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1400px; margin: auto; }
 .product-card { background: var(--black-deep); border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.03); transition: var(--transition); }
-.product-card:hover { transform: translateY(-15px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-.product-img { height: 420px; background: #1a1a1c; overflow: hidden; }
+.product-img { height: 420px; background: #1a1a1c; overflow: hidden; position: relative; cursor: pointer; }
 .product-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s ease; }
-.product-card:hover img { transform: scale(1.1); }
+.zoom-icon { position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.5); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; opacity: 0; transition: 0.3s; }
+.product-card:hover .zoom-icon { opacity: 1; }
+.product-card:hover img { transform: scale(1.05); }
 .product-desc { padding: 35px; }
+
+/* Lightbox Estilo Apple */
+.lightbox {
+    display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    justify-content: center; align-items: center;
+}
+.lightbox-content { max-width: 90%; max-height: 80%; border-radius: 5px; box-shadow: 0 0 50px rgba(0,0,0,0.5); animation: zoomIn 0.3s ease; }
+@keyframes zoomIn { from {transform: scale(0.9); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+.close-btn { position: absolute; top: 40px; right: 40px; color: white; font-size: 40px; cursor: pointer; font-weight: 300; }
 
 /* Process Section */
 .process-section { padding: 120px 5%; background: var(--black-deep); }
 .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 60px; margin-top: 70px; }
-.step-num { font-size: 4rem; font-weight: 900; color: rgba(212, 163, 115, 0.08); margin-bottom: -25px; font-style: italic; }
-.step h3 { font-size: 1.3rem; color: var(--gold); margin-bottom: 18px; letter-spacing: 1px; }
+.step-num { font-size: 4rem; font-weight: 900; color: rgba(212, 163, 115, 0.08); margin-bottom: -25px; }
+.step h3 { font-size: 1.3rem; color: var(--gold); margin-bottom: 18px; }
 
-/* Formulario Estilo Estudio */
+/* Contact Section */
 .contact-section { padding: 120px 5%; background: var(--black-soft); }
 .contact-card { max-width: 1150px; margin: auto; background: var(--black-deep); display: grid; grid-template-columns: 1fr 1.2fr; border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
 .contact-info { padding: 70px; background: linear-gradient(135deg, #0f0f10 0%, #050505 100%); }
-.smart-form { padding: 70px; background: #0c0c0d; }
-input, select { border-radius: 0; border: none; border-bottom: 1px solid #333; background: transparent; padding: 18px 0; font-size: 1rem; margin-bottom: 10px; color: white; transition: 0.4s; }
-input:focus, select:focus { border-color: var(--gold); outline: none; }
+.smart-form { padding: 70px; background: #0c0c0d; display: flex; flex-direction: column; gap: 15px; }
+input, select { border-radius: 0; border: none; border-bottom: 1px solid #333; background: transparent; padding: 18px 0; font-size: 1rem; color: white; transition: 0.4s; }
+input:focus { border-color: var(--gold); outline: none; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.submit-btn { background: var(--gold); color: black; border: none; padding: 22px; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.4s; }
 
-/* WhatsApp Premium */
+/* WhatsApp */
 .whatsapp-float { position: fixed; bottom: 40px; right: 40px; background: #25d366; width: 65px; height: 65px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 1000; transition: 0.4s; }
-.whatsapp-float:active { transform: scale(0.9); }
 
 /* Animaciones */
 .reveal { opacity: 0; transform: translateY(50px); transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -80,7 +87,8 @@ input:focus, select:focus { border-color: var(--gold); outline: none; }
 
 @media (max-width: 900px) {
     .contact-card { grid-template-columns: 1fr; }
-    .contact-info, .smart-form { padding: 45px; }
+    .contact-info, .smart-form { padding: 40px; }
     h1 { font-size: 3.2rem; }
+    .close-btn { top: 20px; right: 20px; }
 }
 footer { padding: 80px 5%; text-align: center; border-top: 1px solid #1a1a1c; color: #555; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; }
