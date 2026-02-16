@@ -5,20 +5,33 @@ window.addEventListener('load', () => {
     setTimeout(() => loader.style.display = 'none', 800);
 });
 
-// 2. EFECTO PARALLAX OPTIMIZADO
+// 2. Video Optimizer (Ahorro de batería y CPU)
+const heroVideo = document.getElementById('mainVideo');
+const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+            heroVideo.pause();
+        } else {
+            heroVideo.play();
+        }
+    });
+}, { threshold: 0.1 });
+
+if (heroVideo) videoObserver.observe(heroVideo);
+
+// 3. Motor de Parallax para la sección intermedia
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const parallaxLayers = document.querySelectorAll('.parallax-bg');
     
     parallaxLayers.forEach(layer => {
-        // Calculamos la velocidad (0.5 es un movimiento sutil)
-        let speed = 0.4;
-        let yPos = -(scrolled * speed);
+        let speed = 0.3;
+        let yPos = (scrolled * speed) - (layer.parentElement.offsetTop * speed);
         layer.style.transform = `translateY(${yPos}px)`;
     });
 });
 
-// 3. Scroll Reveal (Aparición suave)
+// 4. Scroll Reveal
 const revealElements = document.querySelectorAll('.reveal');
 const revealOnScroll = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -30,7 +43,7 @@ const revealOnScroll = new IntersectionObserver((entries) => {
 
 revealElements.forEach(el => revealOnScroll.observe(el));
 
-// 4. Navbar dinámico
+// 5. Navbar dinámico
 window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
     if (window.scrollY > 100) {
@@ -42,7 +55,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// 5. Lightbox
+// 6. Lightbox
 function openLightbox(imgSrc) {
     const lb = document.getElementById('lightbox');
     const lbImg = document.getElementById('lightbox-img');
@@ -55,7 +68,7 @@ function closeLightbox() {
     document.body.style.overflow = 'auto';
 }
 
-// 6. WhatsApp
+// 7. WhatsApp
 function sendToWhatsApp() {
     const type = document.getElementById('item-type').value;
     const w = document.getElementById('width').value;
