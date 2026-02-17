@@ -1,72 +1,88 @@
-// Loader
-window.addEventListener('load', () => {
-    document.getElementById('loader').style.opacity = '0';
-    setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
-});
-
-// Revelar elementos al scroll
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-// BASE DE DATOS DE PEDIDOS (Miguel y Mauro actualizan esto aquí)
-const orders = {
-    "MOB-101": { cliente: "Juan Pérez", producto: "Mesa Comedor", estado: 3 },
-    "MOB-102": { cliente: "Lucía Fernández", producto: "Estantería Pro", estado: 1 },
-    "MOB-103": { cliente: "Ricardo Gómez", producto: "Escritorio Studio", estado: 2 }
+// ==========================================
+// 1. PRECIOS DE PRODUCTOS (Miguel: Cambiá los números de acá)
+// ==========================================
+const preciosMOB = {
+    "Mesa Industrial": 65000,
+    "Estanteria Pro": 45000,
+    "Escritorio Studio": 55000
 };
 
-function checkOrder() {
-    const id = document.getElementById('order-id').value.toUpperCase();
-    const resultDiv = document.getElementById('tracking-result');
-    const order = orders[id];
+// ==========================================
+// 2. ESTADO DE PEDIDOS (Mauro: Agregá o cambiá acá)
+// 1 = Soldadura | 2 = Carpintería | 3 = Listo
+// ==========================================
+const pedidosMOB = {
+    "MOB-101": { cliente: "Juan Pérez", estado: 2 },
+    "MOB-102": { cliente: "Lucía F.", estado: 1 },
+    "MOB-103": { cliente: "Marcos", estado: 3 }
+};
 
-    if (order) {
-        resultDiv.innerHTML = `
-            <div class="status-card">
-                <h3>Pedido: ${id}</h3>
-                <p>Cliente: ${order.cliente} | ${order.producto}</p>
-                <div class="status-step ${order.estado >= 1 ? 'active' : ''}">🛠️ En Estructura (Soldadura)</div>
-                <div class="status-step ${order.estado >= 2 ? 'active' : ''}">🪵 En Carpintería (Lijado y Barnizado)</div>
-                <div class="status-step ${order.estado >= 3 ? 'active' : ''}">🚚 Listo para entrega</div>
-            </div>
-        `;
-    } else {
-        resultDiv.innerHTML = `<p style="color:red; margin-top:20px;">ID de pedido no encontrado.</p>`;
+// ==========================================
+// LÓGICA DEL SISTEMA (No tocar nada abajo)
+// ==========================================
+
+window.onload = () => {
+    actualizarSelectorPrecios();
+    const loader = document.getElementById('loader');
+    if(loader) {
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 1000);
+        }, 500);
+    }
+};
+
+function actualizarSelectorPrecios() {
+    const select = document.getElementById('item-type');
+    if (!select) return;
+    select.innerHTML = ''; 
+    for (let prod in preciosMOB) {
+        let opt = document.createElement('option');
+        opt.value = prod;
+        opt.text = prod;
+        opt.dataset.price = preciosMOB[prod];
+        select.appendChild(opt);
     }
 }
 
-// WhatsApp y PDF
+function checkOrder() {
+    const id = document.getElementById('order-id').value.toUpperCase().trim();
+    const resultDiv = document.getElementById('tracking-result');
+    const pedido = pedidosMOB[id];
+
+    if (pedido) {
+        const est = pedido.estado;
+        resultDiv.innerHTML = `
+            <div class="status-card" style="border: 2px solid #d4a373; padding: 20px; border-radius: 10px; background: #000; margin-top: 20px; text-align: left;">
+                <h3 style="color:#d4a373; margin-bottom: 10px;">Orden: ${id}</h3>
+                <p style="font-size: 0.8rem; margin-bottom: 15px;">Cliente: ${pedido.cliente}</p>
+                <div style="margin: 10px 0; color: ${est >= 1 ? '#d4a373' : '#444'}">${est >= 1 ? '●' : '○'} 🛠️ Soldadura</div>
+                <div style="margin: 10px 0; color: ${est >= 2 ? '#d4a373' : '#444'}">${est >= 2 ? '●' : '○'} 🪵 Carpintería</div>
+                <div style="margin: 10px 0; color: ${est >= 3 ? '#d4a373' : '#444'}">${est >= 3 ? '●' : '○'} 🚚 Listo para entrega</div>
+            </div>`;
+    } else {
+        resultDiv.innerHTML = `<p style="color:#ff6b6b; margin-top:15px;">Código no encontrado.</p>`;
+    }
+}
+
 function sendToWhatsApp() {
     const type = document.getElementById('item-type');
     const w = document.getElementById('width').value;
     const h = document.getElementById('height').value;
     const d = document.getElementById('depth').value;
-    if(!w || !h || !d) { alert("Completá las medidas."); return; }
-    const total = Math.round(((w * h * d) / 100000) * type.options[type.selectedIndex].dataset.price + 35000);
-    const msg = `*CONSULTA MOB*%0A*Mueble:* ${type.value}%0A*Medidas:* ${w}x${h}x${d}cm%0A*Estimado:* $${total.toLocaleString()}`;
+    if(!w || !h || !d) { alert("Faltan medidas."); return; }
+    const precioUnitario = type.options[type.selectedIndex].dataset.price;
+    const total = Math.round(((w * h * d) / 100000) * precioUnitario + 35000);
+    const msg = `*CONSULTA MOB*%0A*Producto:* ${type.value}%0A*Medidas:* ${w}x${h}x${d}cm%0A*Presupuesto:* $${total.toLocaleString()}`;
     window.open(`https://wa.me/5491136139401?text=${msg}`, '_blank');
 }
 
 function generatePDF() {
-    const w = document.getElementById('width').value;
-    const h = document.getElementById('height').value;
-    if(!w || !h) { alert("Completá las medidas."); return; }
     const element = document.getElementById('pdf-content');
-    const opt = {
-        margin: 10,
-        filename: `MOB-Presupuesto.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, backgroundColor: '#0a0a0b' },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-    html2pdf().set(opt).from(element).save();
+    html2pdf().from(element).save(`Presupuesto-MOB.pdf`);
 }
 
 function scrollToContact(product) {
-    document.getElementById('contacto').scrollIntoView();
+    document.getElementById('contacto').scrollIntoView({behavior: "smooth"});
     document.getElementById('item-type').value = product;
 }
