@@ -7,14 +7,12 @@
     
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0a0a0b">
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-
-    <meta name="description" content="Mobiliario premium por Benitez y Oviedo. Ingeniería industrial y diseño de autor. Visualización 3D y AR.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -34,7 +32,7 @@
         </div>
     </nav>
 
-    <header id="inicio" class="hero video-container">
+    <header class="hero">
         <video autoplay muted loop playsinline poster="mueble-industrial.jpg" class="hero-video">
             <source src="video-industrial.mp4" type="video/mp4">
         </video>
@@ -42,33 +40,44 @@
         <div class="hero-content">
             <span class="reveal">Benitez & Oviedo Studio</span>
             <h1 class="reveal">Ingeniería en <span>Mobiliario</span></h1>
-            <p class="reveal">Muebles de alta resistencia diseñados con precisión quirúrgica. Proyectalos en tu living con Realidad Aumentada.</p>
+            <p class="reveal">Diseño estructural de alta gama. Proyectá el futuro de tu espacio con AR.</p>
         </div>
     </header>
 
-    <section id="proyectos" class="products">
-        <div class="section-title reveal">
-            <span>Portfolio Inmersivo</span>
-            <h2>Colección 3D</h2>
+    <section class="finishes-tool reveal">
+        <div class="section-title">
+            <span>Personalización</span>
+            <h2>Elegí tu Material</h2>
         </div>
+        <div class="tool-grid">
+            <div class="wood-preview">
+                <img src="mueble-paraíso.jpg" id="main-preview-img" alt="Vista Previa">
+                <p id="wood-name">Madera: Paraíso Natural</p>
+            </div>
+            <div class="wood-options">
+                <div class="wood-swatch" onclick="changeWood('Paraíso Natural', 'mueble-paraiso.jpg')" style="background: #e3c08d;"></div>
+                <div class="wood-swatch" onclick="changeWood('Petiribí', 'mueble-petiribi.jpg')" style="background: #8b5a2b;"></div>
+                <div class="wood-swatch" onclick="changeWood('Eucalipto Entablonado', 'mueble-euca.jpg')" style="background: #c17753;"></div>
+                <div class="wood-swatch" onclick="changeWood('Ébano Industrial', 'mueble-ebano.jpg')" style="background: #222;"></div>
+            </div>
+        </div>
+    </section>
 
+    <section id="proyectos" class="products">
         <div class="products-grid">
             <div class="product-card reveal">
-                <div class="product-img">
-                    <model-viewer 
-                        src="mueble.glb" 
-                        ios-src="mueble.usdz"
-                        ar ar-modes="webxr scene-viewer quick-look" 
-                        camera-controls 
-                        poster="mueble-industrial.jpg" 
-                        shadow-intensity="1">
-                        <button slot="ar-button" class="ar-btn">📦 VER EN MI CASA</button>
-                    </model-viewer>
-                </div>
+                <model-viewer 
+                    src="mueble.glb" 
+                    ios-src="mueble.usdz"
+                    ar ar-modes="webxr scene-viewer quick-look" 
+                    camera-controls 
+                    poster="mueble-industrial.jpg">
+                    <button slot="ar-button" class="ar-btn">📦 VER EN TU CASA</button>
+                </model-viewer>
                 <div class="product-desc">
                     <h3>Estantería Pro-Steel</h3>
-                    <p>Hierro estructural y madera maciza tratada. Escaneado LiDAR.</p>
-                    <button class="btn-sm" onclick="scrollToContact('Estantería Pro-Steel')">Consultar Presupuesto</button>
+                    <p>Hierro estructural y madera maciza.</p>
+                    <button class="btn-sm" onclick="scrollToContact('Estantería Pro-Steel')">Cotizar Proyecto</button>
                 </div>
             </div>
         </div>
@@ -78,7 +87,7 @@
         <div class="contact-card">
             <div class="contact-info">
                 <h2>Cotización Técnica</h2>
-                <p>Ingresá las medidas finales para que Miguel y Mauro analicen la viabilidad del proyecto.</p>
+                <p>Ingresá las medidas finales para procesar el presupuesto.</p>
             </div>
             <form id="quote-form" class="smart-form">
                 <div class="form-group">
@@ -93,14 +102,10 @@
                     <input type="number" id="height" placeholder="Alto (cm)">
                     <input type="number" id="depth" placeholder="Largo (cm)">
                 </div>
-                <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Enviar a WhatsApp</button>
+                <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Enviar Pedido</button>
             </form>
         </div>
     </section>
-
-    <footer class="main-footer">
-        <p>MOB INDUSTRIAL &copy; 2026 | Benitez & Oviedo Studio</p>
-    </footer>
 
     <script src="script.js"></script>
 </body>
