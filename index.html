@@ -12,16 +12,9 @@
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0a0a0b">
 
-    <meta name="description" content="Mobiliario premium por Benitez y Oviedo. Ingeniería industrial y diseño de autor en Argentina. Estructuras de alta resistencia.">
-    <meta name="keywords" content="muebles industriales, diseño de autor, Benitez y Oviedo, mobiliario hierro y madera, estanterias industriales">
-    <link rel="canonical" href="https://tu-usuario.github.io/MOB-Industrial/">
-    
-    <meta property="og:title" content="MOB Industrial | Ingeniería en Mobiliario">
-    <meta property="og:description" content="Diseños estructurales de alta resistencia. Calidad premium certificada.">
-    <meta property="og:image" content="logo-mob.jpg">
-    <meta property="og:url" content="https://tu-usuario.github.io/MOB-Industrial/">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <meta name="description" content="Mobiliario premium por Benitez y Oviedo. Ingeniería industrial y diseño de autor. Visualizá nuestros muebles en 3D.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -36,60 +29,51 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#proyectos">Colección</a></li>
-                <li><a href="#proceso">Proceso</a></li>
                 <li><a href="#contacto" class="btn-contacto">Cotizar</a></li>
             </ul>
         </div>
     </nav>
 
     <header id="inicio" class="hero video-container">
-        <video autoplay muted loop playsinline poster="mueble-industrial.jpg" class="hero-video" id="mainVideo">
+        <video autoplay muted loop playsinline poster="mueble-industrial.jpg" class="hero-video">
             <source src="video-industrial.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
         <div class="hero-content">
             <span class="reveal">Benitez & Oviedo Studio</span>
             <h1 class="reveal">Ingeniería en <span>Mobiliario</span></h1>
-            <p class="reveal">Estructuras que desafían el tiempo. Diseñadas para durar, fabricadas para impresionar.</p>
-            <div class="hero-btns reveal">
-                <a href="#proyectos" class="main-btn">Explorar Portafolio</a>
-            </div>
+            <p class="reveal">Diseños industriales de alta resistencia. Ahora disponibles para proyectar en tu espacio con AR.</p>
         </div>
     </header>
 
     <section id="proyectos" class="products">
         <div class="section-title reveal">
-            <span>Portfolio de Ingeniería</span>
-            <h2>Colección <span>MOB</span></h2>
+            <span>Portfolio 3D</span>
+            <h2>Colección Inmersiva</h2>
         </div>
 
-        <div class="filter-container reveal">
-            <button class="filter-btn active" onclick="filterGallery('todos', event)">Todos</button>
-            <button class="filter-btn" onclick="filterGallery('mesas', event)">Mesas</button>
-            <button class="filter-btn" onclick="filterGallery('estanterias', event)">Estanterías</button>
-            <button class="filter-btn" onclick="filterGallery('escritorios', event)">Escritorios</button>
-        </div>
-
-        <div class="products-grid" id="gallery-grid">
-            <div class="product-card reveal estanterias">
-                <div class="product-img" onclick="openLightbox('mueble-industrial.jpg')">
-                    <img src="mueble-industrial.jpg" alt="Estantería MOB" loading="lazy">
-                    <div class="zoom-icon">🔍</div>
+        <div class="products-grid">
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <model-viewer 
+                        src="mueble.glb" 
+                        ios-src="mueble.usdz"
+                        ar 
+                        ar-modes="webxr scene-viewer quick-look" 
+                        camera-controls 
+                        poster="mueble-industrial.jpg" 
+                        shadow-intensity="1">
+                        <button slot="ar-button" class="ar-btn">
+                            👋 Ver en tu casa
+                        </button>
+                    </model-viewer>
                 </div>
                 <div class="product-desc">
-                    <h3>Estantería Pro-Steel</h3>
-                    <p>Hierro estructural y maderas macizas.</p>
-                    <button class="btn-sm" onclick="scrollToContact('Estantería Pro-Steel')">Consultar</button>
+                    <h3>Estantería Pro-Steel 3D</h3>
+                    <p>Hierro y madera maciza. Escaneado con precisión LiDAR.</p>
+                    <button class="btn-sm" onclick="scrollToContact('Estantería 3D')">Cotizar Medidas</button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="mid-parallax parallax-container">
-        <div class="parallax-bg" style="background-image: url('taller.jpg');"></div>
-        <div class="mid-content reveal">
-            <h2>"La ingeniería es el arte de la precisión."</h2>
-            <p>Hecho a mano en Argentina con estándares globales.</p>
         </div>
     </section>
 
@@ -116,11 +100,6 @@
             </form>
         </div>
     </section>
-
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="close-btn">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
-    </div>
 
     <footer class="main-footer">
         <p>MOB INDUSTRIAL &copy; 2026 | Benitez & Oviedo Studio</p>
