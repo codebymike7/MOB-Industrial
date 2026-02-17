@@ -1,67 +1,77 @@
 // ==========================================
-// 1. PRECIOS DE PRODUCTOS (Miguel: Cambiá los números de acá)
+// 1. DATOS DE GESTIÓN (Taller MOB)
 // ==========================================
 const preciosMOB = {
     "Mesa Industrial": 65000,
     "Estanteria Pro": 45000,
-    "Escritorio Studio": 55000
+    "Escritorio Studio": 55000,
+    "Rack TV": 48000
 };
 
-// ==========================================
-// 2. ESTADO DE PEDIDOS (Mauro: Agregá o cambiá acá)
-// 1 = Soldadura | 2 = Carpintería | 3 = Listo
-// ==========================================
 const pedidosMOB = {
-    "MOB-101": { cliente: "Juan Pérez", estado: 2 },
-    "MOB-102": { cliente: "Lucía F.", estado: 1 },
-    "MOB-103": { cliente: "Marcos", estado: 3 }
+    "MOB-101": { cliente: "Marcos G.", estado: 2 }, // 2 = Carpintería
+    "MOB-102": { cliente: "Elena R.", estado: 1 }, // 1 = Soldadura
+    "MOB-103": { cliente: "Juan P.", estado: 3 }  // 3 = Listo
 };
 
 // ==========================================
-// LÓGICA DEL SISTEMA (No tocar nada abajo)
+// 2. LÓGICA DE INICIO
 // ==========================================
-
 window.onload = () => {
-    actualizarSelectorPrecios();
+    actualizarMenuPrecios();
     const loader = document.getElementById('loader');
-    if(loader) {
-        setTimeout(() => {
+    setTimeout(() => {
+        if(loader) {
             loader.style.opacity = '0';
             setTimeout(() => loader.style.display = 'none', 1000);
-        }, 500);
-    }
+        }
+    }, 600);
 };
 
-function actualizarSelectorPrecios() {
+// Animación al hacer Scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ==========================================
+// 3. FUNCIONES DEL SISTEMA
+// ==========================================
+
+function actualizarMenuPrecios() {
     const select = document.getElementById('item-type');
     if (!select) return;
-    select.innerHTML = ''; 
-    for (let prod in preciosMOB) {
+    select.innerHTML = '';
+    for (let p in preciosMOB) {
         let opt = document.createElement('option');
-        opt.value = prod;
-        opt.text = prod;
-        opt.dataset.price = preciosMOB[prod];
+        opt.value = p;
+        opt.textContent = p;
+        opt.dataset.price = preciosMOB[p];
         select.appendChild(opt);
     }
 }
 
 function checkOrder() {
     const id = document.getElementById('order-id').value.toUpperCase().trim();
-    const resultDiv = document.getElementById('tracking-result');
+    const res = document.getElementById('tracking-result');
     const pedido = pedidosMOB[id];
 
     if (pedido) {
-        const est = pedido.estado;
-        resultDiv.innerHTML = `
-            <div class="status-card" style="border: 2px solid #d4a373; padding: 20px; border-radius: 10px; background: #000; margin-top: 20px; text-align: left;">
-                <h3 style="color:#d4a373; margin-bottom: 10px;">Orden: ${id}</h3>
-                <p style="font-size: 0.8rem; margin-bottom: 15px;">Cliente: ${pedido.cliente}</p>
-                <div style="margin: 10px 0; color: ${est >= 1 ? '#d4a373' : '#444'}">${est >= 1 ? '●' : '○'} 🛠️ Soldadura</div>
-                <div style="margin: 10px 0; color: ${est >= 2 ? '#d4a373' : '#444'}">${est >= 2 ? '●' : '○'} 🪵 Carpintería</div>
-                <div style="margin: 10px 0; color: ${est >= 3 ? '#d4a373' : '#444'}">${est >= 3 ? '●' : '○'} 🚚 Listo para entrega</div>
+        const e = pedido.estado;
+        res.innerHTML = `
+            <div style="background:#000; padding:20px; border-radius:10px; margin-top:20px; border:1px solid #d4a373; text-align:left;">
+                <h4 style="color:#d4a373">Orden: ${id}</h4>
+                <p style="font-size:0.7rem; color:#888">Cliente: ${pedido.cliente}</p>
+                <div style="margin-top:15px; font-size:0.9rem;">
+                    <p style="color: ${e >= 1 ? '#d4a373' : '#444'}">🛠️ Estructura: ${e >= 1 ? 'COMPLETO' : 'PENDIENTE'}</p>
+                    <p style="color: ${e >= 2 ? '#d4a373' : '#444'}">🪵 Carpintería: ${e >= 2 ? 'EN PROCESO' : 'PENDIENTE'}</p>
+                    <p style="color: ${e >= 3 ? '#d4a373' : '#444'}">🚚 Entrega: ${e >= 3 ? 'LISTO' : 'PENDIENTE'}</p>
+                </div>
             </div>`;
     } else {
-        resultDiv.innerHTML = `<p style="color:#ff6b6b; margin-top:15px;">Código no encontrado.</p>`;
+        res.innerHTML = `<p style="color:#ff6b6b; margin-top:20px;">Código no encontrado.</p>`;
     }
 }
 
@@ -70,16 +80,25 @@ function sendToWhatsApp() {
     const w = document.getElementById('width').value;
     const h = document.getElementById('height').value;
     const d = document.getElementById('depth').value;
-    if(!w || !h || !d) { alert("Faltan medidas."); return; }
-    const precioUnitario = type.options[type.selectedIndex].dataset.price;
-    const total = Math.round(((w * h * d) / 100000) * precioUnitario + 35000);
-    const msg = `*CONSULTA MOB*%0A*Producto:* ${type.value}%0A*Medidas:* ${w}x${h}x${d}cm%0A*Presupuesto:* $${total.toLocaleString()}`;
-    window.open(`https://wa.me/5491136139401?text=${msg}`, '_blank');
+
+    if(!w || !h || !d) { alert("Ingresá las medidas."); return; }
+
+    const precioUnit = type.options[type.selectedIndex].dataset.price;
+    const total = Math.round(((w * h * d) / 100000) * precioUnit + 35000);
+
+    const texto = `*CONSULTA TÉCNICA MOB*%0A*Mueble:* ${type.value}%0A*Medidas:* ${w}x${h}x${d}cm%0A*Total Estimado:* $${total.toLocaleString()}`;
+    window.open(`https://wa.me/5491136139401?text=${texto}`, '_blank');
 }
 
 function generatePDF() {
     const element = document.getElementById('pdf-content');
-    html2pdf().from(element).save(`Presupuesto-MOB.pdf`);
+    const opt = {
+        margin: 10,
+        filename: 'MOB-Presupuesto.pdf',
+        html2canvas: { scale: 2, backgroundColor: '#141415' },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().from(element).set(opt).save();
 }
 
 function scrollToContact(product) {
