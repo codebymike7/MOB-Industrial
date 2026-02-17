@@ -1,31 +1,53 @@
-// 1. Loader & Reveal
+// 1. Loader Inteligente
 window.addEventListener('load', () => {
-    document.getElementById('loader').style.opacity = '0';
-    setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
+    const loader = document.getElementById('loader');
+    loader.style.opacity = '0';
+    setTimeout(() => loader.style.display = 'none', 1000);
 });
 
-const revealOnScroll = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => revealOnScroll.observe(el));
-
-// 2. Parallax Engine
+// 2. Motor de Parallax (GPU Optimized)
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    document.querySelectorAll('.parallax-bg').forEach(layer => {
+    const parallaxLayers = document.querySelectorAll('.parallax-bg');
+    
+    parallaxLayers.forEach(layer => {
         let speed = 0.4;
+        // Calculamos la posición relativa a la sección
         let yPos = (scrolled * speed) - (layer.parentElement.offsetTop * speed);
-        layer.style.transform = `translateY(${yPos}px)`;
+        layer.style.transform = `translate3d(0, ${yPos}px, 0)`;
     });
 });
 
-// 3. Lightbox Logic
+// 3. Reveal al hacer Scroll
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.15 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// 4. Navbar Dinámica
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 80) {
+        nav.style.padding = "15px 5%";
+        nav.style.background = "rgba(10, 10, 11, 0.98)";
+    } else {
+        nav.style.padding = "25px 5%";
+        nav.style.background = "rgba(10, 10, 11, 0.75)";
+    }
+});
+
+// 5. Lightbox para fotos de Juli
 function openLightbox(src) {
     const lb = document.getElementById('lightbox');
-    document.getElementById('lightbox-img').src = src;
+    const lbImg = document.getElementById('lightbox-img');
     lb.style.display = 'flex';
+    lbImg.src = src;
     document.body.style.overflow = 'hidden';
 }
 function closeLightbox() {
@@ -33,18 +55,28 @@ function closeLightbox() {
     document.body.style.overflow = 'auto';
 }
 
-// 4. Calculador Inteligente WhatsApp
+// 6. Calculador y Envío a WhatsApp
 function sendToWhatsApp() {
-    const type = document.getElementById('item-type');
-    const w = document.getElementById('width').value;
-    const h = document.getElementById('height').value;
+    const typeSelect = document.getElementById('item-type');
+    const width = document.getElementById('width').value;
+    const height = document.getElementById('height').value;
     
-    if(!w || !h) { alert("Ingresá las medidas para cotizar."); return; }
-    
-    // Lógica de cálculo base (Opcional)
-    const priceBase = type.options[type.selectedIndex].dataset.price;
-    const totalEst = Math.round((w * h / 10000) * priceBase);
+    if(!width || !height) {
+        alert("Por favor, ingresá las medidas aproximadas.");
+        return;
+    }
 
-    const message = `*SOLICITUD MOB INDUSTRIAL*%0A%0A*Producto:* ${type.value}%0A*Medidas:* ${w}x${h}cm%0A*Presupuesto Estimado:* $${totalEst.toLocaleString()}%0A%0A_Cotización sujeta a revisión técnica._`;
+    // Lógica de presupuesto estimado base
+    const priceBase = typeSelect.options[typeSelect.selectedIndex].dataset.price;
+    const metrosCuadrados = (width * height) / 10000;
+    const totalEstimado = Math.round(metrosCuadrados * priceBase);
+
+    const message = `*CONSULTA MOB INDUSTRIAL*%0A%0A*Producto:* ${typeSelect.value}%0A*Medidas:* ${width}x${height} cm%0A*Estimado Base:* $${totalEstimado.toLocaleString()}%0A%0A_Quisiera recibir una cotización formal._`;
+    
     window.open(`https://wa.me/5491136139401?text=${message}`, '_blank');
+}
+
+function scrollToContact(product) {
+    document.getElementById('contacto').scrollIntoView();
+    document.getElementById('item-type').value = product;
 }
