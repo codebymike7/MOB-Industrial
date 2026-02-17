@@ -1,36 +1,29 @@
-// 1. Loader Inteligente
+// 1. Loader
 window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     loader.style.opacity = '0';
     setTimeout(() => loader.style.display = 'none', 1000);
 });
 
-// 2. Motor de Parallax (GPU Optimized)
+// 2. Parallax
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const parallaxLayers = document.querySelectorAll('.parallax-bg');
-    
-    parallaxLayers.forEach(layer => {
+    document.querySelectorAll('.parallax-bg').forEach(layer => {
         let speed = 0.4;
-        // Calculamos la posición relativa a la sección
         let yPos = (scrolled * speed) - (layer.parentElement.offsetTop * speed);
         layer.style.transform = `translate3d(0, ${yPos}px, 0)`;
     });
 });
 
-// 3. Reveal al hacer Scroll
-const revealElements = document.querySelectorAll('.reveal');
+// 3. Reveal Observer
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
     });
 }, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-revealElements.forEach(el => revealObserver.observe(el));
-
-// 4. Navbar Dinámica
+// 4. Navbar
 window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
     if (window.scrollY > 80) {
@@ -42,12 +35,29 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// 5. Lightbox para fotos de Juli
+// 5. Galería Filtros
+function filterGallery(category, event) {
+    const btns = document.querySelectorAll('.filter-btn');
+    btns.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const items = document.querySelectorAll('.product-card');
+    items.forEach(item => {
+        if (category === 'todos' || item.classList.contains(category)) {
+            item.style.display = 'block';
+            setTimeout(() => item.style.opacity = '1', 10);
+        } else {
+            item.style.opacity = '0';
+            setTimeout(() => item.style.display = 'none', 500);
+        }
+    });
+}
+
+// 6. Lightbox
 function openLightbox(src) {
     const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightbox-img');
+    document.getElementById('lightbox-img').src = src;
     lb.style.display = 'flex';
-    lbImg.src = src;
     document.body.style.overflow = 'hidden';
 }
 function closeLightbox() {
@@ -55,25 +65,16 @@ function closeLightbox() {
     document.body.style.overflow = 'auto';
 }
 
-// 6. Calculador y Envío a WhatsApp
+// 7. WhatsApp y Scroll
 function sendToWhatsApp() {
     const typeSelect = document.getElementById('item-type');
-    const width = document.getElementById('width').value;
-    const height = document.getElementById('height').value;
-    
-    if(!width || !height) {
-        alert("Por favor, ingresá las medidas aproximadas.");
-        return;
-    }
-
-    // Lógica de presupuesto estimado base
+    const w = document.getElementById('width').value;
+    const h = document.getElementById('height').value;
+    if(!w || !h) { alert("Ingresá las medidas."); return; }
     const priceBase = typeSelect.options[typeSelect.selectedIndex].dataset.price;
-    const metrosCuadrados = (width * height) / 10000;
-    const totalEstimado = Math.round(metrosCuadrados * priceBase);
-
-    const message = `*CONSULTA MOB INDUSTRIAL*%0A%0A*Producto:* ${typeSelect.value}%0A*Medidas:* ${width}x${height} cm%0A*Estimado Base:* $${totalEstimado.toLocaleString()}%0A%0A_Quisiera recibir una cotización formal._`;
-    
-    window.open(`https://wa.me/5491136139401?text=${message}`, '_blank');
+    const total = Math.round(((w * h) / 10000) * priceBase);
+    const msg = `*CONSULTA MOB*%0A*Producto:* ${typeSelect.value}%0A*Medidas:* ${w}x${h}cm%0A*Estimado:* $${total.toLocaleString()}`;
+    window.open(`https://wa.me/5491136139401?text=${msg}`, '_blank');
 }
 
 function scrollToContact(product) {
