@@ -23,7 +23,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// 4. Navbar
+// 4. Navbar Dinámica
 window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
     if (window.scrollY > 80) {
@@ -65,15 +65,24 @@ function closeLightbox() {
     document.body.style.overflow = 'auto';
 }
 
-// 7. WhatsApp y Scroll
+// 7. WhatsApp con Ancho, Alto y Largo
 function sendToWhatsApp() {
     const typeSelect = document.getElementById('item-type');
     const w = document.getElementById('width').value;
     const h = document.getElementById('height').value;
-    if(!w || !h) { alert("Ingresá las medidas."); return; }
+    const d = document.getElementById('depth').value;
+    
+    if(!w || !h || !d) { 
+        alert("Por favor, ingresá Ancho, Alto y Largo para cotizar."); 
+        return; 
+    }
+
+    // Lógica de presupuesto: Precio base x m3 (simplificado para ejemplo)
     const priceBase = typeSelect.options[typeSelect.selectedIndex].dataset.price;
-    const total = Math.round(((w * h) / 10000) * priceBase);
-    const msg = `*CONSULTA MOB*%0A*Producto:* ${typeSelect.value}%0A*Medidas:* ${w}x${h}cm%0A*Estimado:* $${total.toLocaleString()}`;
+    const total = Math.round(((w * h * d) / 100000) * priceBase + 35000);
+
+    const msg = `*CONSULTA TÉCNICA MOB*%0A%0A*Producto:* ${typeSelect.value}%0A*Medidas:* ${w} (Ancho) x ${h} (Alto) x ${d} (Largo) cm%0A*Presupuesto Estimado:* $${total.toLocaleString()}%0A%0A_Solicito revisión de diseño._`;
+    
     window.open(`https://wa.me/5491136139401?text=${msg}`, '_blank');
 }
 
