@@ -14,7 +14,7 @@
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
-    <meta name="description" content="Mobiliario premium por Benitez y Oviedo. Ingeniería industrial y diseño de autor. Visualizá nuestros muebles en 3D.">
+    <meta name="description" content="Mobiliario premium por Benitez y Oviedo. Ingeniería industrial y diseño de autor. Visualización 3D y AR.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -42,14 +42,14 @@
         <div class="hero-content">
             <span class="reveal">Benitez & Oviedo Studio</span>
             <h1 class="reveal">Ingeniería en <span>Mobiliario</span></h1>
-            <p class="reveal">Diseños industriales de alta resistencia. Ahora disponibles para proyectar en tu espacio con AR.</p>
+            <p class="reveal">Muebles de alta resistencia diseñados con precisión quirúrgica. Proyectalos en tu living con Realidad Aumentada.</p>
         </div>
     </header>
 
     <section id="proyectos" class="products">
         <div class="section-title reveal">
-            <span>Portfolio 3D</span>
-            <h2>Colección Inmersiva</h2>
+            <span>Portfolio Inmersivo</span>
+            <h2>Colección 3D</h2>
         </div>
 
         <div class="products-grid">
@@ -58,20 +58,17 @@
                     <model-viewer 
                         src="mueble.glb" 
                         ios-src="mueble.usdz"
-                        ar 
-                        ar-modes="webxr scene-viewer quick-look" 
+                        ar ar-modes="webxr scene-viewer quick-look" 
                         camera-controls 
                         poster="mueble-industrial.jpg" 
                         shadow-intensity="1">
-                        <button slot="ar-button" class="ar-btn">
-                            👋 Ver en tu casa
-                        </button>
+                        <button slot="ar-button" class="ar-btn">📦 VER EN MI CASA</button>
                     </model-viewer>
                 </div>
                 <div class="product-desc">
-                    <h3>Estantería Pro-Steel 3D</h3>
-                    <p>Hierro y madera maciza. Escaneado con precisión LiDAR.</p>
-                    <button class="btn-sm" onclick="scrollToContact('Estantería 3D')">Cotizar Medidas</button>
+                    <h3>Estantería Pro-Steel</h3>
+                    <p>Hierro estructural y madera maciza tratada. Escaneado LiDAR.</p>
+                    <button class="btn-sm" onclick="scrollToContact('Estantería Pro-Steel')">Consultar Presupuesto</button>
                 </div>
             </div>
         </div>
@@ -80,15 +77,15 @@
     <section id="contacto" class="contact-section reveal">
         <div class="contact-card">
             <div class="contact-info">
-                <h2>¿Tenés un proyecto?</h2>
-                <p>Ingresá las medidas (Ancho, Alto y Largo) para calcular un presupuesto base.</p>
+                <h2>Cotización Técnica</h2>
+                <p>Ingresá las medidas finales para que Miguel y Mauro analicen la viabilidad del proyecto.</p>
             </div>
             <form id="quote-form" class="smart-form">
                 <div class="form-group">
                     <select id="item-type">
-                        <option value="Estanteria" data-price="45000">Estantería a medida</option>
-                        <option value="Mesa" data-price="65000">Mesa de comedor</option>
-                        <option value="Escritorio" data-price="50000">Escritorio Industrial</option>
+                        <option value="Estanteria" data-price="450">Estantería a medida</option>
+                        <option value="Mesa" data-price="650">Mesa de comedor</option>
+                        <option value="Escritorio" data-price="500">Escritorio Industrial</option>
                     </select>
                 </div>
                 <div class="form-row three-cols">
@@ -96,7 +93,7 @@
                     <input type="number" id="height" placeholder="Alto (cm)">
                     <input type="number" id="depth" placeholder="Largo (cm)">
                 </div>
-                <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Solicitar Cotización por WhatsApp</button>
+                <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Enviar a WhatsApp</button>
             </form>
         </div>
     </section>
