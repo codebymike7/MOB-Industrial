@@ -14,7 +14,7 @@ body { background: var(--black-deep); color: var(--white); font-family: 'Inter',
 /* Loader */
 #loader { position: fixed; height: 100vh; width: 100%; background: black; display: flex; align-items: center; justify-content: center; z-index: 9999; font-weight: 900; letter-spacing: 12px; transition: 1s; }
 
-/* Navbar Blur Apple Style */
+/* Navbar */
 .navbar { position: fixed; top: 0; width: 100%; padding: 25px 5%; z-index: 1000; background: rgba(10, 10, 11, 0.75); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.03); transition: var(--transition); }
 .container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: auto; }
 .logo-area { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: 1px; }
@@ -23,7 +23,7 @@ body { background: var(--black-deep); color: var(--white); font-family: 'Inter',
 .nav-links a { text-decoration: none; color: white; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 .btn-contacto { background: var(--white); color: black !important; padding: 10px 22px; border-radius: 50px; }
 
-/* Video Hero Section */
+/* Hero */
 .hero { position: relative; height: 100vh; display: flex; align-items: center; padding: 0 10%; overflow: hidden; }
 .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); object-fit: cover; z-index: 1; }
 .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(10,10,11,0.95) 20%, rgba(10,10,11,0.3) 100%); z-index: 2; }
@@ -32,10 +32,12 @@ h1 { font-size: clamp(3rem, 9vw, 6.5rem); font-weight: 900; line-height: 0.9; ma
 h1 span { color: var(--gold); }
 p { color: var(--text-gray); font-size: 1.1rem; max-width: 500px; margin-bottom: 40px; }
 .main-btn { background: var(--gold); color: black; padding: 22px 45px; text-decoration: none; font-weight: 800; text-transform: uppercase; display: inline-block; transition: 0.3s; }
-.main-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(212, 163, 115, 0.3); }
 
-/* Products Grid */
+/* Portafolio & Filtros */
 .products { padding: 120px 5%; background: var(--black-soft); }
+.filter-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
+.filter-btn { background: transparent; border: 1px solid rgba(255,255,255,0.1); color: var(--text-gray); padding: 10px 25px; border-radius: 30px; cursor: pointer; font-size: 0.8rem; font-weight: 700; transition: var(--transition); }
+.filter-btn.active, .filter-btn:hover { background: var(--gold); border-color: var(--gold); color: black; }
 .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1400px; margin: auto; }
 .product-card { background: var(--black-deep); border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.03); transition: var(--transition); }
 .product-img { height: 450px; position: relative; cursor: pointer; overflow: hidden; }
@@ -43,35 +45,31 @@ p { color: var(--text-gray); font-size: 1.1rem; max-width: 500px; margin-bottom:
 .product-card:hover img { transform: scale(1.08); }
 .product-desc { padding: 30px; }
 .btn-sm { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 10px 20px; cursor: pointer; transition: 0.3s; font-weight: 700; text-transform: uppercase; font-size: 0.7rem; }
-.btn-sm:hover { background: var(--gold); color: black; }
 
-/* Parallax Intermedio */
+/* Parallax */
 .parallax-container { position: relative; height: 65vh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; }
 .parallax-bg { position: absolute; top: -20%; left: 0; width: 100%; height: 140%; background-size: cover; background-position: center; z-index: 1; filter: brightness(0.4); will-change: transform; }
 .mid-content { position: relative; z-index: 2; padding: 0 10%; }
-.mid-content h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px; }
 
-/* Contacto & Formulario */
+/* Formulario */
 .contact-section { padding: 120px 5%; }
 .contact-card { max-width: 1100px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; background: var(--black-soft); border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
 .contact-info { padding: 60px; background: #0c0c0d; }
 .smart-form { padding: 60px; display: flex; flex-direction: column; gap: 25px; }
 input, select { border: none; border-bottom: 1px solid #333; background: transparent; padding: 15px 0; color: white; font-family: inherit; font-size: 1rem; outline: none; }
-input:focus { border-color: var(--gold); }
-.submit-btn { background: var(--gold); color: black; border: none; padding: 22px; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+.submit-btn { background: var(--gold); color: black; border: none; padding: 22px; font-weight: 900; text-transform: uppercase; cursor: pointer; }
 
 /* Lightbox */
 .lightbox { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); justify-content: center; align-items: center; }
 .lightbox-content { max-width: 90%; max-height: 80%; border-radius: 5px; }
 .close-btn { position: absolute; top: 40px; right: 40px; color: white; font-size: 40px; cursor: pointer; }
 
-/* Animaciones de aparición */
+/* Reveal Anim */
 .reveal { opacity: 0; transform: translateY(60px); transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 900px) {
     .contact-card { grid-template-columns: 1fr; }
     h1 { font-size: 3.5rem; }
-    .navbar { padding: 15px 5%; }
 }
 footer { padding: 80px 5%; text-align: center; color: #444; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; }
