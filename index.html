@@ -12,6 +12,8 @@
     <meta name="theme-color" content="#0a0a0b">
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -40,25 +42,25 @@
         <div class="hero-content">
             <span class="reveal">Benitez & Oviedo Studio</span>
             <h1 class="reveal">Ingeniería en <span>Mobiliario</span></h1>
-            <p class="reveal">Diseño estructural de alta gama. Proyectá el futuro de tu espacio con AR.</p>
+            <p class="reveal">Diseño estructural premium. Innovación técnica aplicada a cada pieza.</p>
         </div>
     </header>
 
     <section class="finishes-tool reveal">
         <div class="section-title">
             <span>Personalización</span>
-            <h2>Elegí tu Material</h2>
+            <h2>Materiales y Acabados</h2>
         </div>
         <div class="tool-grid">
             <div class="wood-preview">
-                <img src="mueble-paraíso.jpg" id="main-preview-img" alt="Vista Previa">
+                <img src="mueble-paraiso.jpg" id="main-preview-img" alt="Vista Previa">
                 <p id="wood-name">Madera: Paraíso Natural</p>
             </div>
             <div class="wood-options">
                 <div class="wood-swatch" onclick="changeWood('Paraíso Natural', 'mueble-paraiso.jpg')" style="background: #e3c08d;"></div>
                 <div class="wood-swatch" onclick="changeWood('Petiribí', 'mueble-petiribi.jpg')" style="background: #8b5a2b;"></div>
-                <div class="wood-swatch" onclick="changeWood('Eucalipto Entablonado', 'mueble-euca.jpg')" style="background: #c17753;"></div>
-                <div class="wood-swatch" onclick="changeWood('Ébano Industrial', 'mueble-ebano.jpg')" style="background: #222;"></div>
+                <div class="wood-swatch" onclick="changeWood('Euca', 'mueble-euca.jpg')" style="background: #c17753;"></div>
+                <div class="wood-swatch" onclick="changeWood('Ebano', 'mueble-ebano.jpg')" style="background: #222;"></div>
             </div>
         </div>
     </section>
@@ -66,35 +68,32 @@
     <section id="proyectos" class="products">
         <div class="products-grid">
             <div class="product-card reveal">
-                <model-viewer 
-                    src="mueble.glb" 
-                    ios-src="mueble.usdz"
-                    ar ar-modes="webxr scene-viewer quick-look" 
-                    camera-controls 
-                    poster="mueble-industrial.jpg">
-                    <button slot="ar-button" class="ar-btn">📦 VER EN TU CASA</button>
+                <model-viewer src="mueble.glb" ios-src="mueble.usdz" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="mueble-industrial.jpg">
+                    <button slot="ar-button" class="ar-btn">📦 VER EN MI CASA</button>
                 </model-viewer>
                 <div class="product-desc">
-                    <h3>Estantería Pro-Steel</h3>
-                    <p>Hierro estructural y madera maciza.</p>
-                    <button class="btn-sm" onclick="scrollToContact('Estantería Pro-Steel')">Cotizar Proyecto</button>
+                    <h3>Mobiliario de Autor</h3>
+                    <p>Estructuras soldadas a mano con acabado industrial premium.</p>
+                    <button class="btn-sm" onclick="scrollToContact('Mueble Pro')">Configurar Medidas</button>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="contacto" class="contact-section reveal">
-        <div class="contact-card">
-            <div class="contact-info">
-                <h2>Cotización Técnica</h2>
-                <p>Ingresá las medidas finales para procesar el presupuesto.</p>
+        <div class="contact-card" id="pdf-content"> <div class="contact-info">
+                <img src="logo-mob.jpg" alt="Logo MOB" style="width: 60px; margin-bottom: 20px;" class="pdf-only">
+                <h2>Presupuesto Técnico</h2>
+                <p>Configurá las dimensiones de tu proyecto.</p>
+                <div id="pdf-date" class="pdf-only"></div>
             </div>
-            <form id="quote-form" class="smart-form">
+            <div class="smart-form">
                 <div class="form-group">
+                    <label class="pdf-only">Producto:</label>
                     <select id="item-type">
-                        <option value="Estanteria" data-price="450">Estantería a medida</option>
-                        <option value="Mesa" data-price="650">Mesa de comedor</option>
-                        <option value="Escritorio" data-price="500">Escritorio Industrial</option>
+                        <option value="Estanteria" data-price="45000">Estantería Industrial</option>
+                        <option value="Mesa" data-price="65000">Mesa de Comedor</option>
+                        <option value="Escritorio" data-price="55000">Escritorio Studio</option>
                     </select>
                 </div>
                 <div class="form-row three-cols">
@@ -102,8 +101,11 @@
                     <input type="number" id="height" placeholder="Alto (cm)">
                     <input type="number" id="depth" placeholder="Largo (cm)">
                 </div>
-                <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Enviar Pedido</button>
-            </form>
+                <div class="pdf-actions">
+                    <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Consultar WhatsApp</button>
+                    <button type="button" onclick="generatePDF()" class="pdf-btn">Descargar Ficha PDF</button>
+                </div>
+            </div>
         </div>
     </section>
 
