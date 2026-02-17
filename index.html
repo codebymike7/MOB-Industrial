@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>MOB Industrial | Seguimiento & Ingeniería de Autor</title>
+    <title>MOB Industrial | Ingeniería & Mobiliario de Autor</title>
     
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0a0a0b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="logo-mob.jpg">
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div id="loader">MOB</div>
 
-    <nav class="navbar" id="navbar">
+    <nav class="navbar">
         <div class="container">
             <div class="logo-area">
-                <img src="logo-mob.jpg" alt="MOB Logo" class="logo-img">
+                <img src="logo-mob.jpg" alt="MOB" class="logo-img">
                 <span>MOB INDUSTRIAL</span>
             </div>
             <ul class="nav-links">
-                <li><a href="#proyectos">Colección</a></li>
+                <li><a href="#proyectos">Muebles</a></li>
                 <li><a href="#tracking">Seguimiento</a></li>
                 <li><a href="#contacto" class="btn-contacto">Cotizar</a></li>
             </ul>
@@ -36,42 +36,47 @@
     </nav>
 
     <header class="hero">
-        <video autoplay muted loop playsinline poster="mueble-industrial.jpg" class="hero-video">
+        <video autoplay muted loop playsinline class="hero-video">
             <source src="video-industrial.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
         <div class="hero-content">
             <span class="reveal">Benitez & Oviedo Studio</span>
             <h1 class="reveal">Ingeniería en <span>Mobiliario</span></h1>
-            <p class="reveal">Estructuras de alta gama con trazabilidad completa. Del plano a tu espacio.</p>
+            <p class="reveal">Diseño industrial de alta gama con trazabilidad en tiempo real.</p>
         </div>
     </header>
 
     <section id="tracking" class="tracking-section reveal">
-        <div class="section-title">
-            <span>Trazabilidad</span>
-            <h2>Estado de tu Pedido</h2>
+        <div class="section-header">
+            <h2>Seguí tu Pedido</h2>
+            <p>Ingresá el código MOB para ver el estado de fabricación.</p>
         </div>
         <div class="tracking-container">
             <div class="search-box">
-                <input type="text" id="order-id" placeholder="Ingresá tu N° de Pedido (ej: MOB-102)">
-                <button onclick="checkOrder()">Consultar</button>
+                <input type="text" id="order-id" placeholder="Ej: MOB-101">
+                <button onclick="checkOrder()">CONSULTAR</button>
             </div>
-            <div id="tracking-result" class="tracking-result">
-                </div>
+            <div id="tracking-result"></div>
         </div>
     </section>
 
     <section id="proyectos" class="products">
         <div class="products-grid">
             <div class="product-card reveal">
-                <model-viewer src="mueble.glb" ios-src="mueble.usdz" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="mueble-industrial.jpg">
-                    <button slot="ar-button" class="ar-btn">📦 VER EN MI CASA</button>
+                <model-viewer 
+                    src="mueble.glb" 
+                    ios-src="mueble.usdz"
+                    ar ar-modes="webxr scene-viewer quick-look" 
+                    camera-controls 
+                    auto-rotate
+                    poster="logo-mob.jpg">
+                    <button slot="ar-button" class="ar-btn">📦 VER EN MI ESPACIO</button>
                 </model-viewer>
-                <div class="product-desc">
+                <div class="product-info">
                     <h3>Estantería Pro-Steel</h3>
-                    <p>Hierro estructural y madera maciza tratada.</p>
-                    <button class="btn-sm" onclick="scrollToContact('Estantería Pro')">Configurar</button>
+                    <p>Hierro estructural de 2mm y madera maciza.</p>
+                    <button class="btn-outline" onclick="scrollToContact('Estantería Pro-Steel')">Cotizar a medida</button>
                 </div>
             </div>
         </div>
@@ -79,24 +84,24 @@
 
     <section id="contacto" class="contact-section reveal">
         <div class="contact-card" id="pdf-content">
-            <div class="contact-info">
-                <img src="logo-mob.jpg" alt="Logo MOB" style="width: 50px; margin-bottom: 20px;" class="pdf-only">
+            <div class="contact-header">
                 <h2>Presupuesto Técnico</h2>
-                <p>Configurá las dimensiones de tu proyecto industrial.</p>
+                <p>Cálculo basado en volumen y materiales.</p>
             </div>
             <div class="smart-form">
-                <select id="item-type">
-                    <option value="Estanteria" data-price="45000">Estantería Medida</option>
-                    <option value="Mesa" data-price="65000">Mesa Comedor</option>
-                </select>
+                <label>Producto</label>
+                <select id="item-type"></select>
+                
+                <label>Dimensiones (cm)</label>
                 <div class="three-cols">
-                    <input type="number" id="width" placeholder="Ancho (cm)">
-                    <input type="number" id="height" placeholder="Alto (cm)">
-                    <input type="number" id="depth" placeholder="Largo (cm)">
+                    <input type="number" id="width" placeholder="Ancho">
+                    <input type="number" id="height" placeholder="Alto">
+                    <input type="number" id="depth" placeholder="Largo">
                 </div>
-                <div class="pdf-actions">
-                    <button type="button" onclick="sendToWhatsApp()" class="submit-btn">WhatsApp</button>
-                    <button type="button" onclick="generatePDF()" class="pdf-btn">Descargar PDF</button>
+
+                <div class="form-footer">
+                    <button onclick="sendToWhatsApp()" class="btn-primary">Enviar a WhatsApp</button>
+                    <button onclick="generatePDF()" class="btn-secondary">Descargar PDF</button>
                 </div>
             </div>
         </div>
