@@ -12,9 +12,15 @@
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0a0a0b">
 
+    <meta name="description" content="Mobiliario premium por Benitez y Oviedo. Ingeniería industrial y diseño de autor en Argentina.">
+    <meta name="keywords" content="muebles industriales, diseño de autor, Benitez y Oviedo, mobiliario hierro y madera">
     <link rel="canonical" href="https://tu-usuario.github.io/MOB-Industrial/">
-    <meta name="description" content="Mobiliario premium por Benitez y Oviedo. Estructuras industriales de alta resistencia.">
     
+    <meta property="og:title" content="MOB Industrial | Ingeniería en Mobiliario">
+    <meta property="og:description" content="Diseños estructurales de alta resistencia. Calidad premium certificada.">
+    <meta property="og:image" content="logo-mob.jpg">
+    <meta property="og:url" content="https://tu-usuario.github.io/MOB-Industrial/">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -44,16 +50,16 @@
         <div class="hero-content">
             <span class="reveal">Benitez & Oviedo Studio</span>
             <h1 class="reveal">Ingeniería en <span>Mobiliario</span></h1>
-            <p class="reveal">Diseños estructurales de alta resistencia. Fabricación artesanal con estándares industriales.</p>
+            <p class="reveal">Estructuras que desafían el tiempo. Diseñadas para durar, fabricadas para impresionar.</p>
             <div class="hero-btns reveal">
-                <a href="#proyectos" class="main-btn">Ver Colección</a>
+                <a href="#proyectos" class="main-btn">Explorar Portafolio</a>
             </div>
         </div>
     </header>
 
     <section id="proyectos" class="products">
         <div class="section-title reveal">
-            <span>Portfolio Exclusivo</span>
+            <span>Catálogo Exclusivo</span>
             <h2>Diseño & Robustez</h2>
         </div>
         <div class="products-grid">
@@ -65,8 +71,8 @@
                 </div>
                 <div class="product-desc">
                     <h3>Estantería Pro-Steel</h3>
-                    <p>Hierro estructural y madera maciza tratada.</p>
-                    <button class="btn-sm" onclick="openQuote('Estantería Pro-Steel')">Consultar</button>
+                    <p>Hierro estructural y maderas macizas.</p>
+                    <button class="btn-sm" onclick="scrollToContact('Estantería')">Consultar</button>
                 </div>
             </div>
             </div>
@@ -75,8 +81,8 @@
     <section class="mid-parallax parallax-container">
         <div class="parallax-bg" style="background-image: url('taller.jpg');"></div>
         <div class="mid-content reveal">
-            <h2>"La calidad no es un acto, es un hábito."</h2>
-            <p>Cada soldadura cuenta una historia de precisión.</p>
+            <h2>"La ingeniería es el arte de la precisión."</h2>
+            <p>Hecho a mano en Argentina con estándares globales.</p>
         </div>
     </section>
 
@@ -84,22 +90,21 @@
         <div class="contact-card">
             <div class="contact-info">
                 <h2>¿Tenés un proyecto?</h2>
-                <p>Calculá tu presupuesto base y contactanos por WhatsApp.</p>
+                <p>Calculá un presupuesto base y recibí asesoramiento técnico.</p>
             </div>
             <form id="quote-form" class="smart-form">
                 <div class="form-group">
-                    <label>Tipo de Mueble</label>
                     <select id="item-type">
-                        <option value="Estantería" data-price="45000">Estantería Industrial</option>
-                        <option value="Mesa" data-price="60000">Mesa de Comedor</option>
-                        <option value="Escritorio" data-price="55000">Escritorio de Autor</option>
+                        <option value="Estanteria" data-price="45000">Estantería a medida</option>
+                        <option value="Mesa" data-price="65000">Mesa de comedor</option>
+                        <option value="Escritorio" data-price="50000">Escritorio Industrial</option>
                     </select>
                 </div>
                 <div class="form-row">
                     <input type="number" id="width" placeholder="Ancho (cm)">
                     <input type="number" id="height" placeholder="Alto (cm)">
                 </div>
-                <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Solicitar Cotización</button>
+                <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Solicitar Cotización por WhatsApp</button>
             </form>
         </div>
     </section>
