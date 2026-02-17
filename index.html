@@ -82,7 +82,7 @@
                     <button class="btn-sm" onclick="scrollToContact('Estantería Pro-Steel')">Consultar</button>
                 </div>
             </div>
-            </div>
+        </div>
     </section>
 
     <section class="mid-parallax parallax-container">
@@ -97,7 +97,7 @@
         <div class="contact-card">
             <div class="contact-info">
                 <h2>¿Tenés un proyecto?</h2>
-                <p>Calculá un presupuesto base y recibí asesoramiento técnico personalizado.</p>
+                <p>Ingresá las medidas (Ancho, Alto y Largo) para calcular un presupuesto base.</p>
             </div>
             <form id="quote-form" class="smart-form">
                 <div class="form-group">
@@ -107,11 +107,12 @@
                         <option value="Escritorio" data-price="50000">Escritorio Industrial</option>
                     </select>
                 </div>
-                <div class="form-row">
+                <div class="form-row three-cols">
                     <input type="number" id="width" placeholder="Ancho (cm)">
                     <input type="number" id="height" placeholder="Alto (cm)">
+                    <input type="number" id="depth" placeholder="Largo (cm)">
                 </div>
-                <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Solicitar Cotización</button>
+                <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Solicitar Cotización por WhatsApp</button>
             </form>
         </div>
     </section>
