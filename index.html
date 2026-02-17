@@ -12,8 +12,8 @@
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#0a0a0b">
 
-    <meta name="description" content="Mobiliario premium por Benitez y Oviedo. Ingeniería industrial y diseño de autor en Argentina.">
-    <meta name="keywords" content="muebles industriales, diseño de autor, Benitez y Oviedo, mobiliario hierro y madera">
+    <meta name="description" content="Mobiliario premium por Benitez y Oviedo. Ingeniería industrial y diseño de autor en Argentina. Estructuras de alta resistencia.">
+    <meta name="keywords" content="muebles industriales, diseño de autor, Benitez y Oviedo, mobiliario hierro y madera, estanterias industriales">
     <link rel="canonical" href="https://tu-usuario.github.io/MOB-Industrial/">
     
     <meta property="og:title" content="MOB Industrial | Ingeniería en Mobiliario">
@@ -59,20 +59,27 @@
 
     <section id="proyectos" class="products">
         <div class="section-title reveal">
-            <span>Catálogo Exclusivo</span>
-            <h2>Diseño & Robustez</h2>
+            <span>Portfolio de Ingeniería</span>
+            <h2>Colección <span>MOB</span></h2>
         </div>
-        <div class="products-grid">
-            <div class="product-card reveal">
+
+        <div class="filter-container reveal">
+            <button class="filter-btn active" onclick="filterGallery('todos', event)">Todos</button>
+            <button class="filter-btn" onclick="filterGallery('mesas', event)">Mesas</button>
+            <button class="filter-btn" onclick="filterGallery('estanterias', event)">Estanterías</button>
+            <button class="filter-btn" onclick="filterGallery('escritorios', event)">Escritorios</button>
+        </div>
+
+        <div class="products-grid" id="gallery-grid">
+            <div class="product-card reveal estanterias">
                 <div class="product-img" onclick="openLightbox('mueble-industrial.jpg')">
                     <img src="mueble-industrial.jpg" alt="Estantería MOB" loading="lazy">
-                    <div class="badge-price">A medida</div>
                     <div class="zoom-icon">🔍</div>
                 </div>
                 <div class="product-desc">
                     <h3>Estantería Pro-Steel</h3>
                     <p>Hierro estructural y maderas macizas.</p>
-                    <button class="btn-sm" onclick="scrollToContact('Estantería')">Consultar</button>
+                    <button class="btn-sm" onclick="scrollToContact('Estantería Pro-Steel')">Consultar</button>
                 </div>
             </div>
             </div>
@@ -90,7 +97,7 @@
         <div class="contact-card">
             <div class="contact-info">
                 <h2>¿Tenés un proyecto?</h2>
-                <p>Calculá un presupuesto base y recibí asesoramiento técnico.</p>
+                <p>Calculá un presupuesto base y recibí asesoramiento técnico personalizado.</p>
             </div>
             <form id="quote-form" class="smart-form">
                 <div class="form-group">
@@ -104,7 +111,7 @@
                     <input type="number" id="width" placeholder="Ancho (cm)">
                     <input type="number" id="height" placeholder="Alto (cm)">
                 </div>
-                <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Solicitar Cotización por WhatsApp</button>
+                <button type="button" onclick="sendToWhatsApp()" class="submit-btn">Solicitar Cotización</button>
             </form>
         </div>
     </section>
